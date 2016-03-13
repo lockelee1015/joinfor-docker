@@ -1,6 +1,6 @@
 {
   "name": "joinfor-docker",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Your new project",
   "main": "index.js",
   "engines": {
