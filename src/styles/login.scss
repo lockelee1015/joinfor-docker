@@ -1,0 +1,29 @@
+@import "variable";
+
+.login-container {
+  width: 360px;
+  margin: 100px auto;
+  text-align: center;
+  h1 {
+    font-size: 42px;
+  }
+
+  input {
+    border-radius: 0;
+    margin: 10px 0;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  button {
+    width: 360px;
+    border-radius: 0;
+    height: 40px;
+    background: $primary-color;
+    font-size: 14px;
+  }
+
+  button:hover {
+    background: $second-color;
+  }
+}

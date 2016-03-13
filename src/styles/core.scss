@@ -1,6 +1,9 @@
 :global {
   @import 'base';
   @import 'vendor/normalize';
+  @import 'login';
+  @import "variable";
+  @import "nav";
 
   // Some best-practice CSS that's useful for most apps
   // Just remove them if they're not what you want
@@ -9,10 +12,12 @@
   }
 
   html,
-  body {
+  body,
+  .container {
     margin: 0;
     padding: 0;
     height: 100%;
+    position: relative;
   }
 
   *,
@@ -20,4 +25,40 @@
   *:after {
     box-sizing: inherit;
   }
+
+  header {
+    height: 64px;
+    background: $primary-color;
+    position: relative;
+    z-index: 999;
+    h1 {
+      color: white;
+      position: absolute;
+      left: 10px;
+      top: 10px;
+    }
+  }
+
+  .view-container {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+  }
+
+  .toolbar {
+    margin: 10px 0;
+    position: relative;
+
+    input {
+      width: 180px;
+      margin: 0 10px;
+    }
+
+    .operation-dropdown {
+      position: absolute;
+      right: 50px;
+      bottom: 5px;
+    }
+  }
 }
+
