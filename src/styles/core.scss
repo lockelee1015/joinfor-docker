@@ -45,6 +45,22 @@
     padding: 10px;
   }
 
+  .status-msg {
+    border-radius: 5px;
+    height: 20px;
+    padding-left: 4px;
+    color: #666;
+  }
+
+  .status-msg.active {
+    background: #bfe5a9;
+  }
+
+  .status-msg.stop {
+    background: #f3a1a1;
+    color: white;
+  }
+
   .toolbar {
     margin: 10px 0;
     position: relative;

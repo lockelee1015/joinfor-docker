@@ -83,3 +83,15 @@ export async function removeContainer(ctx) {
   })
   return status
 }
+
+export async function attachContainer(ctx) {
+  const param = ctx.request.body
+  const status = await fetch(`${dockerApiPath}/containers/${param.id}`, {
+    method: 'DELETE'
+  }).then(function (response) {
+    return response.body
+  }).catch(function (err) {
+    throw new Error(err)
+  })
+  return status
+}

@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react'
-import {Table, Tooltip, Alert} from 'antd'
+import {Table, Tooltip} from 'antd'
 import {Link} from 'react-router'
+import 'jfw-utils'
 export default class ContainerTable extends Component {
   getColumns() {
     return [{
@@ -36,11 +37,16 @@ export default class ContainerTable extends Component {
       key: 'Ports',
       width: 200,
       render(text, record, index) {
+        text.sortById('asc', 'PrivatePort')
         return (
           <div>
             {text.map((port) => {
               if (port.PublicPort) {
-                return <span>{`${port.PublicPort}->${port.PrivatePort}/${port.Type} `}</span>
+                return <span>
+                  <span style={{color: '#bfe5a9'}}>
+                    &nbsp;|&nbsp;
+                  </span>{`${port.PublicPort}->${port.PrivatePort}/${port.Type} `}
+                </span>
               } else {
                 return <span>{`${port.PrivatePort}/${port.Type} `}</span>
               }
@@ -59,7 +65,7 @@ export default class ContainerTable extends Component {
       key: 'Status',
       width: 150,
       render(text, record, index) {
-        return <Alert message={text} type={record.isActive?'success':'error'}/>
+        return <div className={`status-msg ${record.isActive?'active':'stop'}`}><span>{text} </span></div>
       }
     }]
   }
