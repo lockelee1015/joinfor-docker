@@ -9,10 +9,14 @@ import config from '../config'
 import webpackProxyMiddleware from './middleware/webpack-proxy'
 import webpackDevMiddleware from './middleware/webpack-dev'
 import webpackHMRMiddleware from './middleware/webpack-hmr'
-
+import queryApiMiddleware from './middleware/queryApiMiddleware'
+import body from 'koa-parse-json'
 const debug = _debug('app:server')
 const paths = config.utils_paths
 const app = new Koa()
+
+app.use(convert(body()))
+app.use(queryApiMiddleware)
 
 // This rewrites all routes requests to the root /index.html file
 // (ignoring file requests). If you want to implement isomorphic

@@ -97,6 +97,8 @@ config.compiler_vendor = config.compiler_vendor
     )
   })
 
+config.dockerApiPath='http://192.168.1.82:5555'
+
 // ------------------------------------
 // Utilities
 // ------------------------------------

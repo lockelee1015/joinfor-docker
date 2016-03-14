@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react'
-import {Table, Tooltip} from 'antd'
+import {Table, Tooltip, Alert} from 'antd'
 import {Link} from 'react-router'
 export default class ContainerTable extends Component {
   getColumns() {
@@ -9,7 +9,7 @@ export default class ContainerTable extends Component {
       key: 'name',
       width: 120,
       render(text, record, index) {
-        return <span><Link to={`/index/container/detail/id=${record.Id}`}>{text[0].substring(1)}</Link></span>
+        return <span><Link to={`/container/detail/id=${record.Id}`}>{text[0].substring(1)}</Link></span>
       }
     }, {
       title: '镜像',
@@ -57,18 +57,28 @@ export default class ContainerTable extends Component {
       title: '状态',
       dataIndex: 'Status',
       key: 'Status',
-      width: 150
+      width: 150,
+      render(text, record, index) {
+        return <Alert message={text} type={record.isActive?'success':'error'}/>
+      }
     }]
   }
 
   render() {
+    const _this = this
     const rowSelection = {
-      type: 'checkbox'
+      type: 'checkbox',
+      onChange: function (selectedRowKeys, selectedRows) {
+        console.log(selectedRows)
+        console.log(selectedRowKeys)
+        _this.props.onRowSelectionChange(selectedRowKeys)
+      }
     }
     return (
       <Table columns={this.getColumns()}
              pagination={false}
              useFixedHeader
+             rowKey={(record, index) => record.Id}
              dataSource={this.props.containerList}
              rowSelection={rowSelection}/>
     )
@@ -77,5 +87,6 @@ export default class ContainerTable extends Component {
 
 ContainerTable.propTypes = {
   containerList: PropTypes.array,
-  showContainer: PropTypes.func
+  showContainer: PropTypes.func,
+  onRowSelectionChange: PropTypes.func
 }

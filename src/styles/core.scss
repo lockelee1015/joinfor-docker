@@ -54,10 +54,14 @@
       margin: 0 10px;
     }
 
-    .operation-dropdown {
+    .btn-group {
       position: absolute;
-      right: 50px;
-      bottom: 5px;
+      right: 0;
+      top: 0;
+    }
+
+    button {
+      margin: 0 5px;
     }
   }
 }

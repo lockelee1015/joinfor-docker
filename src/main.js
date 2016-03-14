@@ -14,7 +14,7 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
 })
 
 // Create redux store and sync with react-router-redux. We have installed the
-// react-router-redux reducer under the key "router" in src/routes/index.js,
+// react-router-redux reducer under the key "router" in src/routes/queryApiMiddleware.js,
 // so we need to provide a custom `selectLocationState` to inform
 // react-router-redux of its location.
 const initialState = window.__INITIAL_STATE__

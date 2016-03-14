@@ -7,21 +7,23 @@ const {Item} = Menu
 
 export default class Nav extends Component {
   handlerClick(item) {
-    this.props.history.push(`/index/${item.key}`)
+    this.props.history.push(`${item.key}`)
   }
 
   render() {
     return (
-      <Menu onClick={(item) => this.handlerClick(item)}>
-        <Item key='dashboard'>Dashboard</Item>
-        <Item key='container'>容器</Item>
-        <Item key='image'>镜像</Item>
-        <Item key='config'>配置</Item>
+      <Menu onClick={(item) => this.handlerClick(item)}
+            selectedKeys={[this.props.location.pathname]}>
+        <Item key='/dashboard'>Dashboard</Item>
+        <Item key='/container'>容器</Item>
+        <Item key='/image'>镜像</Item>
+        <Item key='/config'>配置</Item>
       </Menu>
     )
   }
 }
 
 Nav.propTypes = {
-  history: PropTypes.func
+  history: PropTypes.object,
+  location: PropTypes.object
 }
