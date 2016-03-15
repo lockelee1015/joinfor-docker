@@ -8,6 +8,7 @@ import DashboardView from 'views/DashboardView/DashboardView'
 import ImageView from 'views/ImageView/ImageView'
 import ConfigView from 'views/ConfigView/ConfigView'
 import ContainerDetail from 'views/ContainerView/ContainerDetail'
+import ImageDetail from 'views/ImageView/ImageDetail'
 
 export default (store) => {
   return (
@@ -15,9 +16,14 @@ export default (store) => {
       <IndexRoute component={LoginView}/>
       <Route path='/' component={NavLayout}>
         <Route path='dashboard' component={DashboardView}/>
-        <Route path='container' component={ContainerView}/>
-        <Route path='container/detail/:id' component={ContainerDetail}/>
-        <Route path='Image' component={ImageView}/>
+        <Route path='container'>
+          <IndexRoute component={ContainerView}/>
+          <Route path='detail/:id' component={ContainerDetail}/>
+        </Route>
+        <Route path='Image'>
+          <IndexRoute component={ImageView}/>
+          <Route path='detail/:name' component={ImageDetail}/>
+        </Route>
         <Route path='config' component={ConfigView}/>
       </Route>
     </Route>

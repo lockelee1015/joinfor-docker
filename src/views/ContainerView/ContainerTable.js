@@ -10,7 +10,7 @@ export default class ContainerTable extends Component {
       key: 'name',
       width: 120,
       render(text, record, index) {
-        return <span><Link to={`/container/detail/id=${record.Id}`}>{text[0].substring(1)}</Link></span>
+        return <span><Link to={`/container/detail/${record.Id}`}>{text[0].substring(1)}</Link></span>
       }
     }, {
       title: '镜像',

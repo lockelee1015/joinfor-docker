@@ -9,3 +9,13 @@ export function queryImageList() {
     })
   }
 }
+
+export function queryImageInfo(name) {
+  return async function (dispatch) {
+    const result = await queryApi('queryImageInfo', {name})
+    dispatch({
+      type: 'queryImageInfo',
+      image: result
+    })
+  }
+}

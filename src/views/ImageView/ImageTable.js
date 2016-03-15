@@ -9,9 +9,10 @@ export default class ContainerTable extends Component {
       key: 'RepoTags',
       width: 120,
       render(text, record, index) {
+        const name = text[0].substring(0, text[0].indexOf(':'))
         return <span>
-          <Link to={`/container/detail/id=${record.Id}`}>
-            {text[0].substring(0, text[0].indexOf(':'))}
+          <Link to={`/image/detail/${name}`}>
+            {name}
           </Link>
         </span>
       }

@@ -13,3 +13,15 @@ export async function queryImageList(ctx) {
   })
   return containerList
 }
+
+export async function queryImageInfo(ctx) {
+  const param = ctx.request.body
+  const imageInfo = await fetch(`${dockerApiPath}/images/${param.name}/json`).then(
+    function (response) {
+      return response.json()
+    }
+  ).catch(function (err) {
+    throw new Error(err)
+  })
+  return imageInfo
+}

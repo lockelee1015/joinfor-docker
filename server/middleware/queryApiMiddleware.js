@@ -7,7 +7,8 @@ import {
   removeContainer} from '../api/container'
 
 import {
-  queryImageList
+  queryImageList,
+  queryImageInfo
 } from '../api/image'
 
 async function queryApiMiddleware(ctx, next) {
@@ -41,9 +42,12 @@ async function queryApiMiddleware(ctx, next) {
       case 'queryImageList':// 获取镜像列表
         ctx.body = await queryImageList(ctx)
         break
-
+      case 'queryImageInfo'://获取镜像信息
+        ctx.body = await queryImageInfo(ctx)
+        break
       default :
         ctx.body = 'action not found'
+        break
     }
   } else {
     await next()
