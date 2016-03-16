@@ -8,7 +8,8 @@ import {
 
 import {
   queryImageList,
-  queryImageInfo
+  queryImageInfo,
+  createContainer
 } from '../api/image'
 
 async function queryApiMiddleware(ctx, next) {
@@ -44,6 +45,9 @@ async function queryApiMiddleware(ctx, next) {
         break
       case 'queryImageInfo'://获取镜像信息
         ctx.body = await queryImageInfo(ctx)
+        break
+      case 'createContainer'://从镜像创建容器
+        ctx.body = await createContainer(ctx)
         break
       default :
         ctx.body = 'action not found'

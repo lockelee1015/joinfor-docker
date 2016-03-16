@@ -19,3 +19,12 @@ export function queryImageInfo(name) {
     })
   }
 }
+
+export function createContainerFromImage(container) {
+  return async function (dispatch) {
+    await queryApi('createContainer', {container})
+    dispatch({
+      type: 'queryContainerList'
+    })
+  }
+}
