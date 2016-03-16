@@ -5,20 +5,25 @@ const FormItem = Form.Item
 class CreateContainer extends Component {
   getPortsInput() {
     const {getFieldProps} = this.props.form
+    let ExposedPorts = {}
     if (!this.props.image) {
       return null
+    } else {
+      if (this.props.image.Config) {
+        ExposedPorts = this.props.image.Config.ExposedPorts
+      }
     }
-    const {ExposedPorts} = this.props.image ? this.props.image.Config : {ExposedPorts: null}
     if (!ExposedPorts) {
       return null
+    } else {
+      let portList = []
+      for (let key in ExposedPorts) {
+        portList.push(key.substring(0, key.indexOf('/')))
+      }
+      return portList.map((port) => {
+        return <Input addonAfter={`:${port}`} {...getFieldProps(`PORT${port}`)}/>
+      })
     }
-    let portList = []
-    for (let key in ExposedPorts) {
-      portList.push(key.substring(0, key.indexOf('/')))
-    }
-    return portList.map((port) => {
-      return <Input addonAfter={`:${port}`} {...getFieldProps(`PORT${port}`)}/>
-    })
   }
 
   onCreate() {
@@ -52,7 +57,7 @@ class CreateContainer extends Component {
           </Input.Group>
         </FormItem>
         <FormItem label='Cmd:'>
-          <Input {...getFieldProps('cmd')} placeholder={image.ContainerConfig.Cmd[0]}/>
+          <Input {...getFieldProps('cmd')} placeholder={image.Config?image.Config.Cmd[0]:''}/>
         </FormItem>
         <FormItem label='Env:'>
           <Input {...getFieldProps('env')}/>
